@@ -27,12 +27,23 @@ paths:
             type: array
             items:
               $ref: '#/definitions/ProductDto'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
+
         '401':
           description: Unauthorized
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
         '403':
           description: Forbidden
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
         '404':
           description: Not Found
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
       deprecated: false
     post:
       tags:
@@ -53,16 +64,22 @@ paths:
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/ProductDto'
         '201':
           description: Created
+          schema:
+            $ref: '#/definitions/ProductDto'
         '401':
           description: Unauthorized
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
         '403':
           description: Forbidden
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
         '404':
           description: Not Found
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
       deprecated: false
   /products/search:
     get:
@@ -95,10 +112,6 @@ paths:
           in: query
           required: false
           type: string
-        - name: valid
-          in: query
-          required: false
-          type: boolean
       responses:
         '200':
           description: OK
@@ -108,10 +121,17 @@ paths:
               $ref: '#/definitions/ProductDto'
         '401':
           description: Unauthorized
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
+        
         '403':
           description: Forbidden
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
         '404':
           description: Not Found
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
       deprecated: false
   /products/{id}:
     get:
@@ -135,10 +155,17 @@ paths:
             $ref: '#/definitions/ProductDto'
         '401':
           description: Unauthorized
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
+        
         '403':
           description: Forbidden
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
         '404':
           description: Not Found
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
       deprecated: false
     put:
       tags:
@@ -169,12 +196,22 @@ paths:
             $ref: '#/definitions/ProductDto'
         '201':
           description: Created
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
         '401':
           description: Unauthorized
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
         '403':
           description: Forbidden
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
         '404':
           description: Not Found
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
       deprecated: false
     delete:
       tags:
@@ -197,10 +234,16 @@ paths:
             $ref: '#/definitions/ProductDto'
         '204':
           description: No Content
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
         '401':
           description: Unauthorized
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
         '403':
           description: Forbidden
+          schema:
+            $ref: '#/definitions/ExceptionResponse'
       deprecated: false
 definitions:
   ProductDto:
@@ -217,3 +260,12 @@ definitions:
         type: number
         format: double
     title: ProductDto
+  ExceptionResponse:
+    type: object
+    properties:
+      status_code: 
+        type: integer
+        format: int64
+      message:
+        type: string
+    title: ExceptionResponse    
